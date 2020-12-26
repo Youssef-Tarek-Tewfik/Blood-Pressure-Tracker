@@ -1,0 +1,16 @@
+version: '3'
+
+services:
+  blood-pressure-tracker:
+    image: blood-pressure-tracker:dev
+    build:
+      args:
+        source: obj/Docker/empty/
+    volumes:
+      - C:\Users\Youssef\New folder\Workspace\.NET\Blood Pressure Tracker\Blood-Pressure-Tracker:C:\inetpub\wwwroot
+      - :C:\remote_debugger:ro
+    entrypoint: cmd /c "start /B C:\\ServiceMonitor.exe w3svc & C:\\remote_debugger\\x64\\msvsmon.exe /noauth /anyuser /silent /nostatus /noclrwarn /nosecuritywarn /nofirewallwarn /nowowwarn /timeout:2147483646"
+    environment:
+      - DEV_ENVIRONMENT=1
+      - VBCSCOMPILER_TTL=604800
+

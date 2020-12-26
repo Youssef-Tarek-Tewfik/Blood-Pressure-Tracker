@@ -1,0 +1,8 @@
+version: '3'
+
+services:
+  blood-pressure-tracker:
+    image: blood-pressure-tracker
+    build:
+      context: .\Blood-Pressure-Tracker
+      dockerfile: Dockerfile

@@ -1,0 +1,10 @@
+version: '3'
+
+services:
+  blood-pressure-tracker:
+    ports:
+      - "80"
+networks:
+  default:
+    external:
+      name: nat
