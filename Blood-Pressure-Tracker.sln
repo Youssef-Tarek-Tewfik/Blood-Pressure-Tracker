@@ -5,6 +5,11 @@ VisualStudioVersion = 15.0.27130.2027
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Blood-Pressure-Tracker", "Blood-Pressure-Tracker\Blood-Pressure-Tracker.csproj", "{21AA068F-F722-49C2-BDBD-0980BBF239E0}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BloodPressureTrackingSystem", "..\DesignTrial1\DesignTrial1\BloodPressureTrackingSystem.csproj", "{1400FB73-8394-4CF1-9601-58208E414CB6}"
+	ProjectSection(ProjectDependencies) = postProject
+		{21AA068F-F722-49C2-BDBD-0980BBF239E0} = {21AA068F-F722-49C2-BDBD-0980BBF239E0}
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +20,10 @@ Global
 		{21AA068F-F722-49C2-BDBD-0980BBF239E0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{21AA068F-F722-49C2-BDBD-0980BBF239E0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{21AA068F-F722-49C2-BDBD-0980BBF239E0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1400FB73-8394-4CF1-9601-58208E414CB6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1400FB73-8394-4CF1-9601-58208E414CB6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1400FB73-8394-4CF1-9601-58208E414CB6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1400FB73-8394-4CF1-9601-58208E414CB6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

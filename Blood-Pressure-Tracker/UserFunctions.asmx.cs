@@ -18,10 +18,13 @@ namespace Blood_Pressure_Tracker
     // [System.Web.Script.Services.ScriptService]
     public class UserFunctions : System.Web.Services.WebService
     {
+        //private const string conString = "Data Source=lenovo-t540p\\sqlexpress;AttachDbFilename=\"C:\\Users\\Youssef\\New folder\\Workspace\\.NET\\Blood Pressure Tracker\\Blood-Pressure-Tracker\\Database\\BloodPressureTracker.mdf\";Integrated Security=True";
+        //private const string conString = "Data Source=DESKTOP-4RKI3HL\\SQLEXPRESS;AttachDbFilename=\"C:\\Users\\Public\\Downloads\\Blood Pressure Tracker\\Blood-Pressure-Tracker\\Database\\BloodPressureTracker.mdf\";Integrated Security=True";
         private const string conString = "Data Source=lenovo-t540p\\sqlexpress;AttachDbFilename=\"C:\\Users\\Youssef\\New folder\\Workspace\\.NET\\Blood Pressure Tracker\\Blood-Pressure-Tracker\\Database\\BloodPressureTracker.mdf\";Integrated Security=True";
 
+        //DESKTOP-4RKI3HL\SQLEXPRESS
         [WebMethod]
-        public bool Register(string email, string password, string name, int age, float weight, char gender, string bloodPressure)
+        public bool Register(string email, string password, string name, int age, float weight, char gender)
         {
             SqlConnection con = new SqlConnection(conString);
             con.Open();
@@ -38,11 +41,11 @@ namespace Blood_Pressure_Tracker
             if (ret != 1)
                 return false;
 
-            commandString = "insert into BPMeasurements (Email, Measurement) values (@e, @m)";
-            command = new SqlCommand(commandString, con);
-            command.Parameters.Add(new SqlParameter("@e", email));
-            command.Parameters.Add(new SqlParameter("@m", bloodPressure));
-            command.ExecuteNonQuery();
+            //commandString = "insert into BPMeasurements (Email, Measurement) values (@e, @m)";
+            //command = new SqlCommand(commandString, con);
+            //command.Parameters.Add(new SqlParameter("@e", email));
+            //command.Parameters.Add(new SqlParameter("@m", bloodPressure));
+            //command.ExecuteNonQuery();
 
             con.Close();
             return ret == 1;
@@ -120,7 +123,7 @@ namespace Blood_Pressure_Tracker
                     command.Parameters.AddWithValue("@e", email);
                     command.ExecuteNonQuery();
                 }
-            
+
                 if (!bloodPressure.Equals("null"))
                 {
                     commandString = "insert into BPMeasurements (Email, Measurement) values (@e, @m)";
@@ -140,7 +143,7 @@ namespace Blood_Pressure_Tracker
             con.Close();
             return true;
         }
-        
+
         [WebMethod]
         public DataSet ViewMeasurements(string email)
         {
@@ -151,10 +154,26 @@ namespace Blood_Pressure_Tracker
             var dataAdapter = new SqlDataAdapter(statement, connection);
             dataAdapter.SelectCommand.Parameters.AddWithValue("@e", email);
             var ds = new DataSet();
-            dataAdapter.Fill(ds); 
+            dataAdapter.Fill(ds);
 
             connection.Close();
             return ds;
+        }
+
+        [WebMethod]
+
+        public bool PostMeasurements(string email, string bloodPressure, DateTime dt)
+        {
+            SqlConnection con = new SqlConnection(conString);
+            con.Open();
+            string commandString = "insert into BPMeasurements (Email, Measurement, Time) values (@e, @m, @t)";
+            SqlCommand command = new SqlCommand(commandString, con);
+            command.Parameters.Add(new SqlParameter("@e", email));
+            command.Parameters.Add(new SqlParameter("@m", bloodPressure));
+            command.Parameters.Add(new SqlParameter("@t", dt));
+            int ret = command.ExecuteNonQuery();
+            con.Close();
+            return ret == 1;
         }
 
         [WebMethod]
@@ -181,7 +200,7 @@ namespace Blood_Pressure_Tracker
             }
             catch { }
             connection.Close();
-            return ret;                
+            return ret;
         }
     }
 }
